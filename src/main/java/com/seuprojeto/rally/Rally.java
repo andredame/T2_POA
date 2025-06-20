@@ -12,28 +12,28 @@ public class Rally {
      * @return       Número mínimo de paradas ou -1 se não for possível completar o rally
      */
     public static int minParadas(double[] pontos, double L, double d) {
-        // Ordena os pontos de parada por distância do início
+        
         Arrays.sort(pontos);
         int numParadas = 0;
-        double posicaoAtual = 0.0;  // Começa no ponto de partida (0 km)
-        int index = 0;               // Índice para percorrer os pontos ordenados
+        double posicaoAtual = 0.0;  
+        int index = 0;               
 
         while (posicaoAtual + d < L) {
             double alcanceMaximo = posicaoAtual + d;
-            double proximaParada = posicaoAtual; // Armazena o próximo ponto válido
+            double proximaParada = posicaoAtual; 
             
-            // Procura o ponto mais distante dentro do alcance atual
+            
             while (index < pontos.length && pontos[index] <= alcanceMaximo) {
                 proximaParada = pontos[index];
                 index++;
             }
             
-            // Se não foi encontrado um ponto válido, retorna falha
+            
             if (proximaParada == posicaoAtual) {
                 return -1;
             }
             
-            // Atualiza a posição atual para o ponto escolhido e incrementa o contador
+            
             posicaoAtual = proximaParada;
             numParadas++;
         }
